@@ -1,0 +1,51 @@
+<!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>ITC's Pneumonia Predictor</title>
+        <style> div#loading { display: none; } </style>
+      </head>
+      <body>
+        <div class="container p-1">
+        <main>
+            <div class="row mb-3">
+                <h1><img src="https://i.ibb.co/mD4jTGQ/itclogo.jpg" alt="ITC logo"> ITC's Pneumonia Predictor</h1>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-6">
+                    <div class="row">
+                        <h5>Upload an image for prediction</h5>
+                        <form id="predict-form" action="/" method=post enctype=multipart/form-data>
+                          <input type=file name=file>
+                          <input type=submit value=Predict onclick="loading();">
+                        </form>
+                    </div>
+                    <div id="loading">
+                        <img id="loading-image" src="/images/loader.gif" alt="Loading..." />
+                    </div>
+                    {% if params.prediction %}
+                        <div class="row">
+                            <img src="{{ params.img_url }}"/>
+                            <h5>Prediction: {{ params.prediction[0] }}</h5>
+                            <h5>Confidence: {{ params.prediction[1] }} %</h5>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col"></div>
+            </div>
+        </main>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#predict-form").on("submit", function(){
+                    $("#loading").fadeIn();
+                });
+            });
+        </script>
+      </body>
+    </html>
