@@ -20,11 +20,12 @@
                         <h5>Upload an image for prediction</h5>
                         <form id="predict-form" action="/" method=post enctype=multipart/form-data>
                           <input type=file name=file>
-                          <input type=submit value=Predict onclick="loading();">
+                          <input type=submit value=Predict>
                         </form>
                     </div>
                     <div id="loading">
                         <img id="loading-image" src="/images/loader.gif" alt="Loading..." />
+                        <p>Calculating prediction (it should take less than a minute)</p>
                     </div>
                     {% if params.prediction %}
                         <div class="row">
